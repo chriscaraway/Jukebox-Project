@@ -75,24 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nextButton.addEventListener('click', function() {
         myJukebox.nextFunc();
-    });
+    });    // event listeners for specific song choices
 
-
-    // event listeners for specific song choices
-    var firstSong = document.getElementById('chooseFirstSong');
-    var secondSong = document.getElementById('chooseSecondSong');
-    var thirdSong = document.getElementById('chooseThirdSong');
-
-    firstSong.addEventListener('click', function() {
-        myJukebox.chooseSong(0);
-    });
-
-    secondSong.addEventListener('click', function() {
-        myJukebox.chooseSong(1);
-    });
-
-    thirdSong.addEventListener('click', function() {
-        myJukebox.chooseSong(2);
-    });
-
-}); // end DOMContentLoaded event listener
+    }); // end DOMContentLoaded event listener

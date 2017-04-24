@@ -3,7 +3,7 @@
 }
 
 h1 {
-  font-family: "Cambria", serif;
+  font-family: "Raleway", sans-serif;
   font-size: 80px
 }
 
@@ -21,4 +21,20 @@ h1 {
 	background: #000;
 	border-top: 1px solid #CCC;
 	text-align: center;
+}
+
+.jukebox-controls-btn {
+	position: relative;
+	background: none;
+	border: none;
+	width: 65px;
+	height: 65px;
+	line-height: 45px;
+	padding: 0;
+	text-indent: -9999px;
+	background-size: 35% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+	outline: none;
 }
