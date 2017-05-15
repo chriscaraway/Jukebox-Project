@@ -1,6 +1,13 @@
+/* globals $, SC */
+
 document.addEventListener('DOMContentLoaded', function() {
 
     var albumArtDiv = document.getElementById('album-art');
+
+    //Soundcloud API
+
+    SC.initialize({ client_id: "fd4e76fc67798bfa742089ed619084a6" });
+
 
     // contructor function Jukebox object
     function Jukebox(songs, albums) {
@@ -37,10 +44,29 @@ document.addEventListener('DOMContentLoaded', function() {
             this.index = whichSong;
             return this.playFunc();
         };
-    } // end constructor function Jukebox object
+
+        this.uploadFunc = function () {
+          var files = this.dom.upload.prop("files");
+          console.log(files);
+
+          for (var i = 0; i < files.length; i ++) {
+            var file = URL.createOjectURL(files[i]);
+            this.addSong(file, {
+              title: "Uploaded song",
+              artist: "Unknown",
+            });
+
+          }
+
+        };
 
 
-    // create variables and build an new instance of the Jukebox object
+
+
+    }
+
+
+    // Song Album Array
     var songOne = new Audio('noscrubs.mp3');
     var songTwo = new Audio('1985.mp3');
     var songThree = new Audio('heyya.mp3');
@@ -49,6 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var myJukebox = new Jukebox(songArray, albumArray);
 
+    var Soundcloud = new Audio("https://soundcloud.com/tlcofficial/unpretty", {
+      title: "Unpretty",
+      artist: "TLC",
+    });
+    this.change(this.songs[0]);
+
 
     // event listeners for play, pause, stop, next
     var previousButton = document.getElementById('prevButt');
@@ -56,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var pauseButton = document.getElementById('pauseButt');
     var stopButton = document.getElementById('stopButt');
     var nextButton = document.getElementById('nextButt');
+    var uploadButton = document.getElementById('jukebox-header-upload');
 
     previousButton.addEventListener('click', function() {
         myJukebox.prevFunc();
@@ -75,6 +108,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nextButton.addEventListener('click', function() {
         myJukebox.nextFunc();
-    });    // event listeners for specific song choices
+    });
+
+    // 1 bind to input, 2 find an event for selecting file
+    uploadButton.addEventListener('change', function() {
+        myJukebox.uploadFunc();
+    });
+
+    // Upload Song on Jukebox
+    this.dom.upload.on ("change", function() {
+      var files = this.dom.upload.prop("files");
+      console.log(files);
+
+      for(var i = 0; i < files.length; i++) {
+        var file = URL.createOjectURL(files[i]);
+        this.addSong(file, {
+          title: "Uploaded song",
+          artist: "Unknown",
+        });
+      }
+    }.bind(this));
+
+    this.dom.add.on("click", function() {
+      var url = this.dom.input.val();
+      console.log("SoundCloud is playing!");
+      this.addSong(url);
+    }.bind(this));
 
     }); // end DOMContentLoaded event listener

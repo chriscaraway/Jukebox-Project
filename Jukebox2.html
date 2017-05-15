@@ -4,9 +4,15 @@
 <head>
     <meta charset="utf-8">
     <title>Jukebox</title>
-    <h1> Millenial Throwback Jukebox </h1>
+    <h1> Millennial Throwback Jukebox </h1>
     <link rel="stylesheet" type="text/css" href="Jukebox2.css"/>
     <script type="text/javascript" src="Jukebox2.js"></script>
+
+    // Soundcloud API
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    <script src="./scripts/scripts.js"></script>
+
+
 </head>
 
 <body>
@@ -19,6 +25,9 @@
         <input type="file" accept="audio/*" multiple/>
       </label>
     </div>
+
+    
+    <input type="text" class="soundcloud-input" placeholder="Insert Soundcloud URL"/>
 
 
   <div class="jukebox-controls">
